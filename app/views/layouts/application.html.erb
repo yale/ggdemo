@@ -18,10 +18,11 @@
       <% end %>
       <%= yield %>
       <div id="links">
-        <% if session[:current_user_id] != nil %>
+        <%= link_to "Home", root_url %>
+        <% if session[:admin] %>
           <%= link_to "Logout", :action => "logout" %>
         <% else %>
-          <%= link_to "Login", :action => "login" %>
+          <%= link_to "Admin login", :action => "login" %>
         <% end %>
       </div>
     </div>

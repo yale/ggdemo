@@ -249,6 +249,10 @@ p {
   margin-right: auto;
 }
 
+#links {
+  margin-top: 1em;
+}
+
 h1 {
   font-size: 40px;
   font-weight: bold;
@@ -281,6 +285,10 @@ input:focus {
 
 .field_with_errors input {
   border-color: #ac2525;
+}
+
+.action {
+  margin-bottom: 1em;
 }
 
 .actions input {

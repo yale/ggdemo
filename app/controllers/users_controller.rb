@@ -16,18 +16,12 @@ class UsersController < ApplicationController
   end  
 
   def list
-    @users = User.all(:order => 'name')
+    @users = User.all
     respond_to do |format|
       format.html
     end
   end
-  
-  def logout
-    session[:current_user_id] = nil
-    flash[:notice] = "You have been logged out."
-    redirect_to :action => :index
-  end
-
+ 
   def create
     @user = User.new(params[:user])
     
@@ -46,29 +40,24 @@ class UsersController < ApplicationController
   end
 
   def login 
-    @user = User.new
-    
-    respond_to do |format|
-      format.html
-    end
+    @login = Login.new
   end
 
   def trylogin
-    if @user = User.find_by_email(params[:user][:email])
-      session[:current_user_id] = @user.id
+    if params[:login][:password] == "admin"
+      session[:admin] = true
       flash[:notice] = "Thank you. Here is a list of others who have registered."
       redirect_to :action => 'list'
     else
-      @user = User.new(params[:user])
-      flash.now[:error] = "Looks like you haven't registered quite yet. What's your name?"
-      render :action => 'index'
+      flash[:error] = "Sorry, that is not the correct password."
+      redirect_to :action => 'login'
     end
   end
 
   def logout
     if logged_in?
-      session[:current_user_id] = nil
-      flash.now[:notice] = "You have been logged out."
+      session[:admin] = nil
+      flash[:notice] = "You have been logged out."
     end
     
     redirect_to :action => 'index'
@@ -81,10 +70,8 @@ class UsersController < ApplicationController
     else
       flash.now[:error] = "Looks like you've already unsubscribed!"
     end
-
-    respond_to do |format|
-      format.html { redirect_to(:action => 'index') }
-    end
+    
+    redirect_to :action => 'index'
   end
   
 end

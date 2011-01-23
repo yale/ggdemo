@@ -1,11 +1,12 @@
-<%= form_for(@user, :url => { :action => 'trylogin' }) do |f| %>
+<%= form_for @login, :url => { :action => 'trylogin' } do |f| %>
 
   <div class="field">
-    <% @user.errors[:email].each do |e| %>
+    <% @login.errors[:email].each do |e| %>
     <p class="error"><%= e %></p>
     <% end %>
-    <p><%= f.text_field :email, :placeholder => 'Email' %></p>
+    <p><%= f.password_field :password, :placeholder => 'Password' %></p>
   </div>
+  
   <div class="actions">
     <%= f.submit "Login" %>
   </div>
