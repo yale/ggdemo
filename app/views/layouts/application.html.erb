@@ -16,7 +16,14 @@
       </div>
         <% end %>
       <% end %>
-    <%= yield %>
+      <%= yield %>
+      <div id="links">
+        <% if session[:current_user_id] != nil %>
+          <%= link_to "Logout", :action => "logout" %>
+        <% else %>
+          <%= link_to "Login", :action => "login" %>
+        <% end %>
+      </div>
     </div>
   </body>
 </html>

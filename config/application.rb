@@ -38,5 +38,8 @@ module Ggdemo
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # Load custom validators
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
