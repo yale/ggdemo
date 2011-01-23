@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coming Soon</title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js", "modernizr", :defaults %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Be the first.</h1>
+      <% [:notice, :error].each do |key| %>
+        <% if flash[key] %>
+      <div class="flash <%= key %>">
+        <%= flash[key] %>
+      </div>
+        <% end %>
+      <% end %>
+    <%= yield %>
+    </div>
+  </body>
+</html>

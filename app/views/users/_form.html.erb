@@ -1,0 +1,19 @@
+<%= form_for(@user) do |f| %>
+
+  <div class="field">
+    <% @user.errors[:name].each do |e| %>
+    <p class="error"><%= e %></p>
+    <% end %>
+    <!-- NOTE: 'placeholder' attribute support ensured by modernizr -->
+    <p><%= f.text_field :name, :placeholder => 'Name' %></p>
+  </div>
+  <div class="field">
+    <% @user.errors[:email].each do |e| %>
+    <p class="error"><%= e %></p>
+    <% end %>
+    <p><%= f.text_field :email, :placeholder => 'Email' %></p>
+  </div>
+  <div class="actions">
+    <%= f.submit "Register" %>
+  </div>
+<% end %>

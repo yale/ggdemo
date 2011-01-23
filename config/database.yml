@@ -1,0 +1,19 @@
+defaults: &defaults
+  adapter: mysql
+  username: root
+  password: 1p6h1i8
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: ggdemo
+  
+test:
+  <<: *defaults
+  database: ggdemo_test
+
+production:
+  <<: *defaults
+  database: ggdemo_prod
